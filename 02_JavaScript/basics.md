@@ -14,6 +14,7 @@ Web development involves writing a lot of HTML, CSS, and JS code. Historically (
 JavaScript is an interpreted language, meaning it's executed line-by-line at runtime by the JavaScript engine in the browser or server environment, rather than being compiled into machine code beforehand.
 
 C++ code ---------> Binary code --------> Runs on your machine
+
 JavaScript code ---------------------------> Runs on your machine
 
 Upsides: 
