@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Project</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #controls {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #6a11cb;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background-color: #2575fc;
+            color: #fff;
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #counter {
+            margin-top: 20px;
+            font-size: 3em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Timer</h1>
+    <div id="controls">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+    <div id="counter">0</div>
+
+    <script>
+        let countdown; // Declare countdown variable globally to manage intervals
+        let counter = 0; // Declare counter globally for reset
+
+        const updateCounterDisplay = () => {
+            document.querySelector('#counter').textContent = counter;
+        };
+
+        document.querySelector('#start').addEventListener('click', function () {
+            if (!countdown) { // Prevent multiple intervals from starting
+                countdown = setInterval(function () {
+                    counter++;
+                    updateCounterDisplay();
+                }, 1000);
+            }
+        });
+
+        document.querySelector('#stop').addEventListener('click', function () {
+            clearInterval(countdown);
+            countdown = null; // Reset the countdown variable to allow restart
+        });
+
+        // Update the counter display initially
+        updateCounterDisplay();
+    </script>
+</body>
+</html>
