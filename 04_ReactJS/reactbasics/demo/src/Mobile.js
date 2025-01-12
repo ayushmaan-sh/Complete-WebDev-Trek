@@ -1,34 +1,44 @@
-import { useState } from 'react';
+import React, { useState } from "react"
+import './App.css'
 
+export default function MobileFunction(props){
 
-export default function Mobile(props) {
-    const { image, mobileName, price } = props;
+  const{image, mobileName, price} = props
 
-    // Using state for counter
-    const [counter, setCounter] = useState(0);
+  const [addToCartCounter, setAddItemToCartCounter] = useState(0)
 
-    const addValue = () => {
-        setCounter(counter + 1);
-    };
+  const availableInStock = 5;
 
-    const removeValue = () => {
-        if(counter === 0){
-            return alert('cannot be less then 0!')
-        }
-        setCounter(counter - 1)
+  const addItemToCart = () => {
+    if(addToCartCounter === 5){
+      return alert('Stock limit reached!')
+    }else{
+      setAddItemToCartCounter(addToCartCounter + 1)
     }
+  }
 
-    return (
-        <div id="mobileCard">
-            <div className='card'>
-                <img src={image} alt="mobile" />
-                <p>{mobileName}</p>
-                <p>{price}</p>
-                <h4>Cart Value: {counter}</h4>
-                <button onClick={addValue}>Add to cart</button>
-                <br />
-                <button onClick={removeValue}>Remove from cart</button>
-            </div>
+  const removeItemToCart = () => {
+    if(addToCartCounter <= 0){
+      return alert("Can't be less then 0!")
+    }else{
+      setAddItemToCartCounter(addToCartCounter - 1)
+    }
+  }
+  return(
+    <>
+      <div class='main'>
+        <div class="card">
+          <img src={image} alt="mobilePhone"/>
+          <p class="mobileName">{mobileName}</p>
+          <p class="price">{price}</p>
+          <p>Stock available - {availableInStock}</p>
+          <p> Added to cart : {addToCartCounter}</p>
+          <div class='cartButtons'>
+          <button id="cartButtonsID" onClick={addItemToCart}>Add to cart</button>
+          <button id="cartButtonsID" onClick={removeItemToCart}>Remove</button>
+          </div>
         </div>
-    );
+      </div>
+    </>
+  )
 }
